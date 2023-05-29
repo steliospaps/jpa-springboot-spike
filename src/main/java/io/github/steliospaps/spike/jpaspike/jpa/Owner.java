@@ -7,6 +7,7 @@ import org.hibernate.annotations.Cascade;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -22,7 +23,7 @@ public class Owner {
     @Column
     private String field1;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,mappedBy = "owner",fetch = FetchType.EAGER)
     //@JoinColumn(name="OWNER_NAME",nullable = false)
     private List<OwnerFeature> features;
 

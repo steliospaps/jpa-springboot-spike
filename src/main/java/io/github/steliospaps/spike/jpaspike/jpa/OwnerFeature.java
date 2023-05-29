@@ -3,6 +3,7 @@ package io.github.steliospaps.spike.jpaspike.jpa;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
@@ -26,7 +27,7 @@ public class OwnerFeature {
     private Owner owner;
     
     @Id
-    @ManyToOne    
+    @ManyToOne(optional = false,fetch = FetchType.EAGER)    
     @JoinColumn(name = "DATA_ID")
     private OtherData otherData;
         

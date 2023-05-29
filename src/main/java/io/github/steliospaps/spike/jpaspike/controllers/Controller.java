@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import io.github.steliospaps.spike.jpaspike.jpa.Owner;
 import io.github.steliospaps.spike.jpaspike.jpa.OwnerFeature;
 import io.github.steliospaps.spike.jpaspike.jpa.OwnerRepository;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
+@Slf4j
 public class Controller {
 
     private OwnerRepository ownerRepository;
@@ -40,6 +42,7 @@ public class Controller {
         
         return ResponseEntity.of(ownerRepository.findById(name)//
                 .map(i -> {
+                    log.info("addingFeature");
                     OwnerFeature feature = new OwnerFeature();
                     
                     feature.setOtherData(i.getFeatures().get(0).getOtherData());
@@ -48,7 +51,7 @@ public class Controller {
                     i.addFeature(feature);
                     
                     
-                    
+                    log.info("saving");
                     return ownerRepository.save(i);
                 })
                 );
@@ -59,8 +62,10 @@ public class Controller {
         
         return ResponseEntity.of(ownerRepository.findById(name)//
                 .map(i -> {
+                    log.info("removingFeature");
                     i.getFeatures().remove(0);
                     
+                    log.info("saving");
                     return ownerRepository.save(i);
                 })
                 );
