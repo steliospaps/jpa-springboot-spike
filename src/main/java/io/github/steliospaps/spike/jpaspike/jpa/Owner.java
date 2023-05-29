@@ -22,11 +22,12 @@ public class Owner {
     @Column
     private String field1;
     
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="OWNER_NAME",nullable = false)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true,mappedBy = "owner")
+    //@JoinColumn(name="OWNER_NAME",nullable = false)
     private List<OwnerFeature> features;
 
     public void addFeature(OwnerFeature feature) {
+        feature.setOwner(this);
         features.add(feature);
     }
 }
