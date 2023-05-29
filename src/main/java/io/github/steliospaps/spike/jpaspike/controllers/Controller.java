@@ -70,4 +70,18 @@ public class Controller {
                 })
                 );
     }
+
+    @PostMapping(path="/owner/{name}/changeFeature", produces = MediaType.APPLICATION_JSON_VALUE)
+    public  ResponseEntity<Owner> changeOwnerFeature(@PathVariable String name) {
+        
+        return ResponseEntity.of(ownerRepository.findById(name)//
+                .map(i -> {
+                    log.info("changingFeature: should fail when saving");
+                    i.getFeatures().get(0).setData2(""+System.currentTimeMillis());
+                    
+                    log.info("saving");
+                    return ownerRepository.save(i);
+                })
+                );
+    }
 }
