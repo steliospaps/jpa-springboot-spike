@@ -19,7 +19,8 @@ CREATE TABLE OWNER_FEATURE (
 
 insert into owner(name,field1)
 values
-('Jimbo','field1');
+('Jimbo','field1'),
+('Jimbo2','field1');
 
 insert into other_data(DATA_ID,data)
 values
@@ -28,4 +29,5 @@ values
 insert into owner_feature (owner_name,data_id,data2)
 values
 ('Jimbo','dataid1','data2a'),
+('Jimbo2','dataid1','data2a'),
 ('Jimbo','dataid1','data2b');

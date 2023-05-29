@@ -1,5 +1,7 @@
 package io.github.steliospaps.spike.jpaspike.jpa;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -15,7 +17,6 @@ public class OwnerFeature {
     
     @Data
     private static class OwnerFeatureId{
-        private String ownerName;
         private String data2;
         private String otherData;
     }
@@ -24,11 +25,7 @@ public class OwnerFeature {
     @ManyToOne
     @JoinColumn(name = "DATA_ID")
     private OtherData otherData;
-    
-    @Id
-    @Column(name="OWNER_NAME")
-    private String ownerName;
-    
+        
     @Id
     private String data2;
     

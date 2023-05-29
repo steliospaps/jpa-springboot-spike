@@ -2,6 +2,9 @@ package io.github.steliospaps.spike.jpaspike.jpa;
 
 import java.util.List;
 
+import org.hibernate.annotations.Cascade;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -19,7 +22,11 @@ public class Owner {
     @Column
     private String field1;
     
-    @OneToMany(orphanRemoval = true)
-    @JoinColumn(name="OWNER_NAME")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="OWNER_NAME",nullable = false)
     private List<OwnerFeature> features;
+
+    public void addFeature(OwnerFeature feature) {
+        features.add(feature);
+    }
 }
